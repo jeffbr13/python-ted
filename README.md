@@ -17,8 +17,9 @@ pip install python-ted
 
 ### Requires
 
-- [`requests`](https://pypi.python.org/pypi/requests)
 - [`icalendar`][icalendar]
+- [`lxml`](http://lxml.de/)
+- [`requests`](https://pypi.python.org/pypi/requests)
 
 
 ## Usage

@@ -76,5 +76,5 @@ setup(
     packages=find_packages(exclude=["contrib", "docs", "tests*"]),
 
     # Run-time dependencies.
-    install_requires = ['requests', 'icalendar'],
+    install_requires = ['icalendar', 'lxml', 'requests'],
 )
