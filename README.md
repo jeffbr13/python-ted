@@ -18,7 +18,7 @@ pip install python-ted
 ### Requires
 
 - [`requests`](https://pypi.python.org/pypi/requests)
-- [`icalendar`](https://pypi.python.org/pypi/icalendar)
+- [`icalendar`][icalendar]
 
 
 ## Usage
@@ -72,6 +72,13 @@ Each `Course` object has 3 main attributes:
 ```
 
 
+Future
+------
+
+- Support Python 3, once [`icalendar`][icalendar] does.
+- Get API access for T@Ed.
+
+
 License
 -------
 
@@ -81,3 +88,4 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
 [ted]: https://www.ted.is.ed.ac.uk/UOE1314_SWS/
+[icalendar]: https://pypi.python.org/pypi/icalendar
