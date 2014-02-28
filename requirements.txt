@@ -1,0 +1,7 @@
+icalendar==3.6.1
+lxml==3.3.2
+python-dateutil==2.2
+pytz==2013.9
+requests==2.2.1
+six==1.5.2
+wsgiref==0.1.2
