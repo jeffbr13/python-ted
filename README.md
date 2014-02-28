@@ -1,7 +1,7 @@
 python-ted
 ==========
 
-Python library for interacting with the University of Edinburgh's [T@Ed Timetabling Service][ted].
+Python library for the University of Edinburgh's [T@Ed Timetabling Service][ted].
 
 **Disclaimer: This library has not been condoned by the University of Edinburgh.**
 
