@@ -27,11 +27,11 @@ pip install python-ted
 
 ```python
 >>> import icalendar
->>> from ted import TimetablingAtEd
+>>> import ted
 
 
 # Initialise client and download course-list
->>> timetable = TimetablingAtEd()
+>>> timetable = ted.Client()
 
 
 # Search course-list for a substring match
