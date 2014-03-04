@@ -59,7 +59,7 @@ Each `Course` object has 3 main attributes:
 >>> course = timetable.course(code='INFR08015')
 
 # Scrape T@Ed for list of weekly course events, and build an ical calendar
->>> events = course.events()
+>>> events = timetable.events(course)
 >>> cal = icalendar.Calendar()
 >>> for e in events:
 >>>     cal.add_component(e)
