@@ -9,28 +9,8 @@ from icalendar import Event
 from lxml import html
 from requests import Session
 
+from .aspx_session import ASPXSession
 from .course import Course
-
-
-class ASPXSession:
-    """
-    Holds ASPX session variables, which are used for form validation between pages.
-    """
-    def __init__(self, html):
-        """
-        Takes HTML page and uses XPath to find session variables.
-        """
-        try:
-            self.viewstate = html.xpath('//input[@name="__VIEWSTATE"]/@value')[0]
-            self.eventvalidation = html.xpath('//input[@name="__EVENTVALIDATION"]/@value')[0]
-        except:
-            raise Exception('Couldn\'t build session - ASPX session fields not found in HTML')
-
-    def parameters(self):
-        return {
-            '__VIEWSTATE': self.viewstate,
-            '__EVENTVALIDATION': self.eventvalidation,
-        }
 
 
 class Client:
@@ -62,11 +42,11 @@ class Client:
         self.session = Session()
 
         # Get ASPX session variables from default page:
-        response = self.session.get('https://www.ted.is.ed.ac.uk/UOE1314_SWS/default.aspx', verify=False)
+        response = self.session.get(Client.base_url, verify=False)
         index = html.document_fromstring(response.text)
         self.aspx_session = ASPXSession(index)
 
-        logging.info('Fetching course list webpage')
+        logging.info('Fetching course list webpage...')
         parameters = {
             '__EVENTTARGET': 'LinkBtn_modules',
             'tLinkType': 'information',
@@ -80,17 +60,18 @@ class Client:
             try:
                 title, identifier = option.text.strip().rsplit(' - ', 1)
             except ValueError as e:
-                logging.warning('Error in splitting {0}, title and identifier will be the same: {1}'.format(option.text.strip(), e))
                 title = identifier = option.text.strip()
+                logging.warning('Error in splitting {0}: {1}'.format(title, e))
+                logging.info('Title and identifier will be the same for {0}'.format(title))
             code = identifier[:9]
             self.courses.append(Course(title=title,
                                        identifier=identifier,
                                        code=code))
 
-        logging.info('Fetching academic-week/date conversion webpage')
+        logging.info('Fetching academic-week/date conversion webpage...')
         week_date_page = self.get(Client.weeklist_url)
 
-        logging.info('Building academic-week/date dictionary')
+        logging.info('Building academic-week/date dictionary...')
         self.week_dateranges = dict()
         week_date_rows = week_date_page.xpath('/html/body/table[@class="weektable"]//tr[./td]')
         for row in week_date_rows:
