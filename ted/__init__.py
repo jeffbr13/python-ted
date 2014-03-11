@@ -4,5 +4,4 @@ import logging
 
 from .client import Client
 
-
 logging.basicConfig(level=logging.DEBUG)

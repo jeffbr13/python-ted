@@ -24,22 +24,19 @@ pip install python-ted
 
 ## Usage
 
-
 ```python
 >>> import icalendar
 >>> import ted
 
-
 # Initialise client and download course-list
 >>> timetable = ted.Client()
 
-
-# Search course-list for a substring match
->>> timetable.search('Data')
+# Regex match against course list:
+>>> import re
+>>> timetable.match(re.compile('Data'))
 [<Course: INFR08015 (Informatics 1 - Data and Analysis)>, <Course: ...>, ...]
->>> timetable.search('INFR08015')
+>>> timetable.match(re.compile('INFR08015'))
 [<Course: INFR08015 (Informatics 1 - Data and Analysis)>]
-
 
 # Get a specific course by course-code
 >>> timetable.course(code='INFR08015')
@@ -60,14 +57,9 @@ Each `Course` object has 3 main attributes:
 
 # Scrape T@Ed for list of weekly course events, and build an ical calendar
 >>> events = timetable.events(course)
->>> cal = icalendar.Calendar()
->>> for e in events:
->>>     cal.add_component(e)
+>>> cal = timetable.calendar(events)
 
-# Shortcut for the above
->>> cal = course.calendar()
-
-# Render calendar to a string
+# Render calendar to a bytestring
 >>> cal.to_ical()
 "BEGIN:VCALENDAR..."
 ```
