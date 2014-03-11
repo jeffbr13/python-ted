@@ -68,7 +68,6 @@ Each `Course` object has 3 main attributes:
 Future
 ------
 
-- Support Python 3, once [`icalendar`][icalendar] does.
 - Get API access for T@Ed.
 
 
