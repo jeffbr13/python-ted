@@ -5,7 +5,7 @@ import re
 
 from datetime import datetime, timedelta
 from daterange import DateRange
-from icalendar import Event
+from icalendar import Calendar, Event
 from lxml import html
 from requests import Session
 
@@ -193,3 +193,13 @@ class Client:
         return events
 
 
+    def calendar(self, events):
+        """
+        Build an icalendar Calendar containing all the given events.
+        """
+        cal = Calendar()
+        cal.add('prodid', '-//Ben Jeffrey//NONSGML timetab//EN')
+        cal.add('version', '2.0')
+        for event in events:
+            cal.add_component(event)
+        return cal
