@@ -79,4 +79,5 @@ setup(
 
     # Run-time dependencies.
     install_requires = ['icalendar', 'lxml', 'requests'],
+    dependency_links = ['git+https://github.com/jeffbr13/daterange.git@df0b2f1667fd92e6b087c0065ce1fe8541d65ecf#egg=daterange-master'],
 )
