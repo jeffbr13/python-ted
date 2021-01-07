@@ -1,6 +1,6 @@
 -e git+https://github.com/jeffbr13/daterange.git@df0b2f1667fd92e6b087c0065ce1fe8541d65ecf#egg=daterange-master
 icalendar==3.6.1
-lxml==3.3.2
+lxml==4.6.2
 python-dateutil==2.2
 pytz==2013.9
 requests==2.2.1
